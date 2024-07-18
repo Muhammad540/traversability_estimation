@@ -16,23 +16,27 @@ Affiliation: Robotic Systems Lab, ETH Zurich**
 
 ### Dependencies
 
-This software is built on the Robotic Operating System ([ROS]), which needs to be [installed](http://wiki.ros.org) first. Additionaly, the Traversability Estimation depends on following software:
+This software is built on the Robotic Operating System ([ROS2]), which needs to be [installed](http://wiki.ros.org) first. Additionaly, the Traversability Estimation depends on following software:
 
 - [Robot Operating System (ROS)](http://wiki.ros.org) (middleware for robotics),
 - [Eigen](http://eigen.tuxfamily.org) (linear algebra library),
 - [kindr](https://github.com/leggedrobotics/kindr) (kinematics and dynamics library for robotics),
 - [Grid Map](https://github.com/leggedrobotics/grid_map) (grid map library for mobile robots),
 - [Elevation Map](https://github.com/leggedrobotics/elevation_mapping) (elevation mapping with a mobile robot),
-- [Param IO](https://github.com/leggedrobotics/any_node) (Wrapper for the ROS param get and set functions)
+
+#### Important Note:
+
+- I have removed the dependency of ParamIO and use the default ROS2 functionality to get and set ROS2 Parameters. 
+- I have ported the elevation mapping package to ROS2 HUmble as well, it still needs some formatting will be sharing that soon. 
 
 ### Building
 
 In order to install, clone the latest version from this repository into your catkin workspace and compile the package using
 
-	cd catkin_ws/src
-	git clone https://github.com/leggedrobotics/traversability_estimation.git
+	cd ws/src
+	git clone https://github.com/Muhammad540/traversability_estimation.git
 	cd ../
-	catkin build traversability_estimation
+	colcon build traversability_estimation
 
 
 ### Unit Tests
@@ -44,13 +48,13 @@ No unit tests so far.
 
 In order to get the Traversability estimation to run with your robot, you will need to adapt a few parameters in the config-files. It is the easiest if you duplicate the file `robot.yaml`, `robot_footprint.yaml`, and `filter_parameter.yaml` in [`traversability_estimation/config`](https://github.com/leggedrobotics/traversability_estimation/tree/master/traversability_estimation/config) and adapt all the parameters you need to change. Then, duplicate the launch-file `traversability_estimation/launch/traversability_estimation.launch` and change the entries to point at your files. You can then launch the traversability map node with
 
-	roslaunch traversability_estimation traversability_estimation.launch
+	ros2 launch traversability_estimation traversability_estimation.launch
 
 Proceed in the same way for the traversability map visualization by adapting the launch-file `traversability_estimation/launch/visualization.launch`. You can then launch the traversability map visualization node with
 
-     	roslaunch traversability_estimation visualization.launch
+    ros2 launch traversability_estimation visualization.launch
 
-Use [rviz](http://wiki.ros.org/rviz) to visualize the traversability map.
+Use [rviz2](http://wiki.ros.org/rviz) to visualize the traversability map.
 
 
 ## Nodes
