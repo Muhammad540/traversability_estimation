@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>traversability_estimation_filters</name>
+  <version>0.4.0</version>
+  <description>library for filtering elevation maps.</description>
+  <maintainer email="pfankhauser@anybotics.com">Peter Fankhauser</maintainer>
+  <license>MIT</license>
+  <url type="website">https://github.com/ethz-asl/traversability_estimation</url>
+  <url type="bugtracker">https://github.com/ethz-asl/traversability_estimation/issues</url>
+  <author email="martiwer@student.ethz.ch">Martin Wermelinger</author>
+  <author email="pfankhauser@anybotics.com">Peter Fankhauser</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>grid_map_core</depend>
+  <depend>grid_map_ros</depend>
+  <depend>grid_map_msgs</depend>
+  <depend>filters</depend>
+  <depend>pluginlib</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <filters plugin="share/${PROJECT_NAME}/filter_plugins.xml"/>
+  </export>
+</package>

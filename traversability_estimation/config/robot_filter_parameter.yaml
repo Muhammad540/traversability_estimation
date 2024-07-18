@@ -1,0 +1,42 @@
+traversability_estimation:
+  ros__parameters:
+    # Traversability map filter parameters
+    traversability_map_filters:
+      filter1:
+        name: normal_vectors_filter
+        type: gridMapFilters/NormalVectorsFilter
+        params:
+          input_layer: elevation
+          output_layers_prefix: surface_normal_
+          radius: 0.5 #0.05
+          normal_vector_positive_axis: z
+      filter2:
+        name: slope_filter
+        type: traversabilityFilters/SlopeFilter
+        params:
+          map_type: traversability_slope
+          critical_value: 0.040
+      filter3:
+        name: step_filter
+        type: traversabilityFilters/StepFilter
+        params:
+          map_type: traversability_step
+          critical_value: 0.12
+          first_window_radius: 0.5
+          second_window_radius: 0.6
+          critical_cell_number: 1
+      # filter4:
+      #   type: traversabilityFilters/RoughnessFilter
+      #   params:
+      #     map_type: traversability_roughness
+      #     critical_value: 0.05
+      #     estimation_radius: 0.05
+      # filter5:
+      #   type: gridMapFilters/MathExpressionFilter
+      #   params:
+      #     output_layer: traversability
+      #     expression: (1.0 / 3.0) * (traversability_slope + traversability_step + traversability_roughness)
+      # filter6:
+      #   type: gridMapFilters/DeletionFilter
+      #   params:
+      #     layers: [surface_normal_x, surface_normal_y, surface_normal_z]
